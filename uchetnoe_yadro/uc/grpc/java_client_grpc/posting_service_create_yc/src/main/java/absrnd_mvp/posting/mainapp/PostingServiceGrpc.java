@@ -4,9 +4,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.63.0)",
-    comments = "Source: absrnd_mvp.posting.mainapp.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class PostingServiceGrpc {
 
@@ -89,6 +86,21 @@ public final class PostingServiceGrpc {
         }
       };
     return PostingServiceStub.newStub(factory, channel);
+  }
+
+  /**
+   * Creates a new blocking-style stub that supports all types of calls on the service
+   */
+  public static PostingServiceBlockingV2Stub newBlockingV2Stub(
+      io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<PostingServiceBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<PostingServiceBlockingV2Stub>() {
+        @java.lang.Override
+        public PostingServiceBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new PostingServiceBlockingV2Stub(channel, callOptions);
+        }
+      };
+    return PostingServiceBlockingV2Stub.newStub(factory, channel);
   }
 
   /**
@@ -186,6 +198,37 @@ public final class PostingServiceGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service PostingService.
+   */
+  public static final class PostingServiceBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<PostingServiceBlockingV2Stub> {
+    private PostingServiceBlockingV2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      super(channel, callOptions);
+    }
+
+    @java.lang.Override
+    protected PostingServiceBlockingV2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      return new PostingServiceBlockingV2Stub(channel, callOptions);
+    }
+
+    /**
+     */
+    public absrnd_mvp.posting.mainapp.AbsrndMvpPostingMainapp.CreateResponse create(absrnd_mvp.posting.mainapp.AbsrndMvpPostingMainapp.CreateRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCreateMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public absrnd_mvp.posting.mainapp.AbsrndMvpPostingMainapp.DeleteResponse delete(absrnd_mvp.posting.mainapp.AbsrndMvpPostingMainapp.DeleteRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getDeleteMethod(), getCallOptions(), request);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do limited synchronous rpc calls to service PostingService.
    */
   public static final class PostingServiceBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<PostingServiceBlockingStub> {

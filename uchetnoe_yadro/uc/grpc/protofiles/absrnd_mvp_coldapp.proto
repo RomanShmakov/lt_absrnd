@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package absrnd_mvp.coldapp;
+
+import "absrnd_mvp.proto";
+import "absrnd_mvp_posting_coldapp.proto";
+import "absrnd_mvp_hold_coldapp.proto";
+
+message Request {
+  TransactionType transaction_type = 1; // Тип транзакции
+  ActionType action_type = 2; // Тип действия
+
+  oneof payload {
+    absrnd_mvp.posting.coldapp.PostingMessage posting_payload = 3;
+    absrnd_mvp.hold.coldapp.HoldMessage hold_payload = 4;
+  }
+}

@@ -18,6 +18,7 @@ enum TransactionType {
 // Тип действий
 enum ActionType {
   ACTION_TYPE_POST = 0;
-  ACTION_TYPE_DELETE = 1;
-  ACTION_TYPE_ROLLBACK = 2;
+  ACTION_TYPE_POST_ROLLBACK = 1;
+  ACTION_TYPE_DELETE = 2;
+  ACTION_TYPE_DELETE_ROLLBACK = 3;
 }

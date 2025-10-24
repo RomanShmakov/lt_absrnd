@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package absrnd_mvp.filial.mainapp;
+
+import "google/protobuf/timestamp.proto";
+
+message FilialRequest {
+  string filial = 1;
+}
+
+message FilialResponse {
+
+  // Статус выполнения получения информации о счете
+  // Положительные статусы в диапозоне от 0 до 999
+  // Системная ошибка в диапозоне от 1000 до 1999
+  // Ошибка бизнес-логики от 2000 до 2999
+  enum ResultStatus {
+    RESULT_STATUS_SUCCESS = 0;
+    RESULT_STATUS_SYSTEM_ERROR = 1000;
+    RESULT_STATUS_MISSING_FILIAL = 2000;
+    RESULT_STATUS_FILIALS_NOT_FOUND = 2002; 
+  }
+
+  message Filial{
+    string filial = 1;
+    string bic = 2;
+    string regno = 3;
+    string description = 4;
+    optional google.protobuf.Timestamp date_current = 5;
+    optional google.protobuf.Timestamp date_closed = 6;
+  }
+  
+  ResultStatus result_status = 1; // Статус операции
+  optional string result_description = 2; // Сообщение об ошибке
+  optional Filial filial = 3;
+}
+
+service FilialService {
+  rpc Get(FilialRequest) returns(FilialResponse) {}
+}
