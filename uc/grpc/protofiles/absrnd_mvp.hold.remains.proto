@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package absrnd_mvp.hold.remains;
+
+import "google/protobuf/timestamp.proto";
+import "absrnd_mvp.proto";
+
+// Управление холдами
+
+message RequestPayload {
+  
+  // Введение холда
+  message PostPayload {
+    string account_id = 1; // Идентификатор счета в формате UUID
+    string amount_currency = 2; // Сумма холдирования
+    optional string balance_type = 4; // Тип остатка для проверки
+    string reason_code = 5; // Тип холда / причина установки холда
+  }
+
+  string hold_id = 1; // Внутренний идентификатор документа в формате UUID
+
+  oneof payload {
+    PostPayload post_payload = 2;
+  }
+}
+
+// Статус выполнения учета движения средств
+// Положительные статусы в диапозоне от 0 до 999
+// Системная ошибка в диапозоне от 1000 до 1999
+// Ошибка бизнес-логики от 2000 до 2999
+enum ResultStatus {
+  RESULT_STATUS_HOLD_SUCCESS = 0;
+  RESULT_STATUS_BALANCE_EXEEDED = 2000;
+}
+
+message ResponsePayload {
+  // Ответ на введение холда
+  message PostPayload {
+    google.protobuf.Timestamp hold_start_time = 1; // Время начала действия холда
+  }
+
+  string hold_id = 1; // Внутренний идентификатор документа в формате UUID
+  optional ResultStatus result_status = 2; // Статус операции
+  optional string result_description = 3; // Сообщение
+
+  oneof payload {
+    PostPayload post_payload = 4;
+  }
+}

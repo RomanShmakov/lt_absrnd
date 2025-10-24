@@ -1,0 +1,108 @@
+"AMD","АРМЯНСКИЙ ДРАМ","051","OOC",2,100,replaceThisTimestamp
+"ATS","ШИЛЛИНГ","040","OOB",2,100,replaceThisTimestamp
+"AUD","АВСТРАЛИЙСКИЙ ДОЛЛАР","036","OOB",2,100,replaceThisTimestamp
+"AZM","АЗЕРБАЙДЖАНСКИЙ МАНАТ","031","OOC",2,100,replaceThisTimestamp
+"A33","ПАЛЛАДИЙ В ГРАММАХ","618","OOG",2,100,replaceThisTimestamp
+"A51","АМ.$ П/Р КИТАЙ","617","OOE",2,100,replaceThisTimestamp
+"A76","ПЛАТИНА В ГРАММАХ","613","OOG",2,100,replaceThisTimestamp
+"A98","ЗОЛОТО В ГРАММАХ","615","OOF",2,100,replaceThisTimestamp
+"A99","СЕРЕБРО В ГРАММАХ","616","OOG",2,100,replaceThisTimestamp
+"BEF","БЕЛЬГИЙСКИЙ ФРАНК","056","OOB",0,1,replaceThisTimestamp
+"BYB","БЕЛОРУССКИЙ РУБЛЬ","112","OOC",2,100,replaceThisTimestamp
+"BYR","БЕЛОРУССКИЙ РУБЛЬ","974","OOC",2,100,replaceThisTimestamp
+"CAD","КАНАДСКИЙ ДОЛЛАР","124","OOB",2,100,replaceThisTimestamp
+"CHF","ШВЕЙЦАРСКИЙ ФРАНК","756","OOB",2,100,replaceThisTimestamp
+"CNY","ЮАНЬ","156","OOC",2,100,replaceThisTimestamp
+"CYP","КИПРСКИЙ ФУНТ","196","OOC",2,100,replaceThisTimestamp
+"CZK","ЧЕШСКАЯ КРОНА","203","OOC",2,100,replaceThisTimestamp
+"C32","АМ.$ П/Р В ИНДИЙСКИХ РУПИЯХ","614","OOE",2,100,replaceThisTimestamp
+"C44","АМ.$ ПО ТЕК. РАСЧ. С ИНДИЕЙ","611","OOE",2,100,replaceThisTimestamp
+"C45","ИНДИЙСКИЕ РУПИИ ПО КЛИРИНГ. Р.","610","OOE",2,100,replaceThisTimestamp
+"C95","АМ.$ П/Р ИНДИЯ","612","OOE",2,100,replaceThisTimestamp
+"DEM","НЕМЕЦКАЯ МАРКА","276","OOB",2,100,replaceThisTimestamp
+"DKK","ДАТСКАЯ КРОНА","208","OOB",2,100,replaceThisTimestamp
+"EEK","КРОНА","233","OOC",2,100,replaceThisTimestamp
+"ESP","ИСПАНСКАЯ ПЕСЕТА","724","OOB",0,1,replaceThisTimestamp
+"EUR","ЕВРО","978","OOB",2,100,replaceThisTimestamp
+"FIM","МАРКА","246","OOB",2,100,replaceThisTimestamp
+"FRF","ФРАНЦУЗСКИЙ ФРАНК","250","OOB",2,100,replaceThisTimestamp
+"GBP","ФУНТ СТЕРЛИНГОВ","826","OOB",2,100,replaceThisTimestamp
+"GRD","ДРАХМА","300","OOB",0,1,replaceThisTimestamp
+"IEP","ИРЛАНДСКИЙ ФУНТ","372","OOB",2,100,replaceThisTimestamp
+"INR","ИНДИЙСКАЯ РУПИЯ","356","OOC",2,100,replaceThisTimestamp
+"ITL","ИТАЛЬЯНСКАЯ ЛИРА","380","OOB",0,1,replaceThisTimestamp
+"JPY","ИЕНА","392","OOB",0,1,replaceThisTimestamp
+"KGS","СОМ","417","OOC",2,100,replaceThisTimestamp
+"KZT","ТЕНГЕ","398","OOC",2,100,replaceThisTimestamp
+"LTL","ЛИТОВСКИЙ ЛИТ","440","OOC",2,100,replaceThisTimestamp
+"LVL","ЛАТВИЙСКИЙ ЛАТ","428","OOC",2,100,replaceThisTimestamp
+"MDL","МОЛДАВСКИЙ ЛЕЙ","498","OOC",2,100,replaceThisTimestamp
+"MXN","МЕКСИКАНСКОЕ ПЕСО","484","OOC",2,100,replaceThisTimestamp
+"NLG","НИДЕРЛАНДСКИЙ ГУЛЬДЕН","528","OOB",2,100,replaceThisTimestamp
+"NOK","НОРВЕЖСКАЯ КРОНА","578","OOB",2,100,replaceThisTimestamp
+"NZD","НОВОЗЕЛАНДСКИЙ ДОЛЛАР","554","OOC",2,100,replaceThisTimestamp
+"OOA","РУБЛИ (ФИКТИВНАЯ ВАЛЮТА)","310","OOA",0,1,replaceThisTimestamp
+"OOB","СКВ (ФИКТИВНАЯ ВАЛЮТА)","311","OOB",0,1,replaceThisTimestamp
+"OOC","ВОК (ФИКТИВНАЯ ВАЛЮТА)","312","OOC",0,1,replaceThisTimestamp
+"OOD","СПЕЦ.ПРАВА ЗАИМСТВОВАНИЯ (ФИКТ.ВАЛ)","313","OOD",0,1,replaceThisTimestamp
+"OOE","КЛИРИНГОВЫЕ ВАЛЮТЫ (ФИКТ. ВАЛЮТА)","314","OOE",0,1,replaceThisTimestamp
+"OOF","ЗОЛОТО (ФИКТИВНАЯ ВАЛЮТА)","315","OOF",0,1,replaceThisTimestamp
+"OOG","ДРАГМЕТАЛЛЫ (ФИКТИВНАЯ ВАЛЮТА)","316","OOG",0,1,replaceThisTimestamp
+"OOH","ДРАГОЦЕННЫЕ КАМНИ","317","OOH",0,1,replaceThisTimestamp
+"OOI","ЮВЕЛИРНЫЕ ИЗДЕЛИЯ","318","OOI",0,1,replaceThisTimestamp
+"PTE","ПОРТУГАЛЬСКОЕ ЭСКУДО","620","OOB",0,1,replaceThisTimestamp
+"P25","АМ.$ П/Р ВЬЕТНАМ","619","OOE",2,100,replaceThisTimestamp
+"RUR","РОССИЙСКИЙ РУБЛЬ","810","OOA",2,100,replaceThisTimestamp
+"SEK","ШВЕДСКАЯ КРОНА","752","OOB",2,100,replaceThisTimestamp
+"SGD","СИНГАПУРСКИЙ ДОЛЛАР","702","OOB",2,100,replaceThisTimestamp
+"TMM","МАНАТ","795","OOC",2,100,replaceThisTimestamp
+"TRL","СТАРАЯ ТУРЕЦКАЯ ЛИРА","792","OOB",3,1000,replaceThisTimestamp
+"UAH","ГРИВНА","980","OOC",2,100,replaceThisTimestamp
+"USD","ДОЛЛАР США","840","OOB",2,100,replaceThisTimestamp
+"UZS","УЗБЕКСКИЙ СУМ","860","OOC",2,100,replaceThisTimestamp
+"ZAR","РЭНД","710","OOC",2,100,replaceThisTimestamp
+"SIT","ТОЛАР","705","OOC",2,100,replaceThisTimestamp
+"DZD","АЛЖИРСКИЙ ДИНАР","012","OOC",2,100,replaceThisTimestamp
+"HUF","ФОРИНТ","348","OOC",2,100,replaceThisTimestamp
+"BHD","БАХРЕЙНСКИЙ ДИНАР","048","OOC",3,1000,replaceThisTimestamp
+"OMR","ОМАНСКИЙ РИАЛ","512","OOC",3,1000,replaceThisTimestamp
+"SKK","СЛОВАЦКАЯ КРОНА","703","OOC",2,100,replaceThisTimestamp
+"A50","АМ.$ П/Р КНР 1995","609","OOE",2,100,replaceThisTimestamp
+"TWD","НОВЫЙ ТАЙВАНЬСКИЙ ДОЛЛАР","901","OOB",2,100,replaceThisTimestamp
+"TRY","ТУРЕЦКАЯ ЛИРА","949","OOB",2,100,replaceThisTimestamp
+"HKD","ГОНКОНГСКИЙ ДОЛЛАР","344","OOC",2,100,replaceThisTimestamp
+"XDR","СДР (СПЕЦ. ПРАВА ЗАИМСТВОВАНИЯ)","960","OOC",2,100,replaceThisTimestamp
+"A30","РОДИЙ В ГРАММАХ","621","OOE",0,1,replaceThisTimestamp
+"B69","ЮВЕЛИРНЫЕ ИЗДЕЛИЯ","622","OOI",0,1,replaceThisTimestamp
+"B99","ДРАГОЦЕННЫЕ КАМНИ","623","OOH",0,1,replaceThisTimestamp
+"TJS","СОМОНИ","972","OOC",2,100,replaceThisTimestamp
+"AZN","АЗЕРБАЙДЖАНСКИЙ МАНАТ","944","OOC",2,100,replaceThisTimestamp
+"TND","ТУНИССКИЙ ДИНАР","788","OOC",3,1000,replaceThisTimestamp
+"MYR","МАЛАЙЗИЙСКИЙ РИНГГИТ","458","OOC",2,100,replaceThisTimestamp
+"AED","ДИРХАМ (ОАЭ)","784","OOC",2,100,replaceThisTimestamp
+"BRL","БРАЗИЛЬСКИЙ РЕАЛ","986","OOC",2,100,replaceThisTimestamp
+"SAR","САУДОВСКИЙ РИЯЛ","682","OOC",2,100,replaceThisTimestamp
+"TMT","НОВЫЙ ТУРКМЕНСКИЙ МАНАТ","934","OOC",2,100,replaceThisTimestamp
+"PLN","ЗЛОТЫЙ","985","OOC",2,100,replaceThisTimestamp
+"BGN","БОЛГАРСКИЙ ЛЕВ","975","OOC",2,100,replaceThisTimestamp
+"DOP","ДОМИНИКАНСКОЕ ПЕСО","214","OOC",2,100,replaceThisTimestamp
+"ILS","НОВЫЙ ИЗРАИЛЬСКИЙ ШЕКЕЛЬ","376","OOC",2,100,replaceThisTimestamp
+"KRW","ВОНА","410","OOC",0,1,replaceThisTimestamp
+"RON","Новый румынский лей","946","OOC",2,100,replaceThisTimestamp
+"GEL","ЛАРИ","981","OOC",2,100,replaceThisTimestamp
+"MNT","ТУГРИК","496","OOC",0,1,replaceThisTimestamp
+"BYN","БЕЛОРУССКИЙ РУБЛЬ","933","OOC",2,100,replaceThisTimestamp
+"THB","БАТ","764","OOC",2,100,replaceThisTimestamp
+"BOB","БОЛИВАНО","068","OOC",2,100,replaceThisTimestamp
+"VND","ДОНГ","704","OOC",0,1,replaceThisTimestamp
+"MAD","МАРОККАНСКИЙ ДИРХАМ","504","OOC",2,100,replaceThisTimestamp
+"VEF","Боливар","947","OOC",2,100,replaceThisTimestamp
+"HRK","КУНА","191","OOC",2,100,replaceThisTimestamp
+"CUP","КУБИНСКОЕ ПЕСО","192","OOC",2,100,replaceThisTimestamp
+"RSD","СЕРБСКИЙ ДИНАР","941","OOC",2,100,replaceThisTimestamp
+"ARS","АРГЕНТИСКОЕ ПЕСО","032","OOC",2,100,replaceThisTimestamp
+"COP","КОЛУМБИЙСКОЕ ПЕСО","170","OOC",2,100,replaceThisTimestamp
+"IDR","ИНДОНЕЗИЙСКАЯ РУПИЯ","360","OOC",2,100,replaceThisTimestamp
+"QAR","КАТАРСКИЙ РИАЛ","634","OOC",2,100,replaceThisTimestamp
+"EGP","ЕГИПЕТСКИЙ ФУНТ","818","OOC",2,100,replaceThisTimestamp
+"KWD","КУВЕЙТСКИЙ ДИНАР","414","OOC",3,1000,replaceThisTimestamp

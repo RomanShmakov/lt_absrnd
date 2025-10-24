@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan">
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+    </TestPlan>
+    <hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="[GENERAL] Parameters">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="protocolMetric" elementType="Argument">
+            <stringProp name="Argument.name">protocolMetric</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.value">http</stringProp>
+          </elementProp>
+          <elementProp name="urlMetric" elementType="Argument">
+            <stringProp name="Argument.name">urlMetric</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.value">monitor.dev.moscow.alfaintra.net</stringProp>
+          </elementProp>
+          <elementProp name="portMetric" elementType="Argument">
+            <stringProp name="Argument.name">portMetric</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.value">8428</stringProp>
+          </elementProp>
+          <elementProp name="pathMetric" elementType="Argument">
+            <stringProp name="Argument.name">pathMetric</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.value">/api/v1/import/prometheus</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="JDBC Connection Configuration Linux">
+        <boolProp name="autocommit">true</boolProp>
+        <stringProp name="checkQuery"></stringProp>
+        <stringProp name="connectionAge">5000</stringProp>
+        <stringProp name="connectionProperties"></stringProp>
+        <stringProp name="dataSource">ydb_connection</stringProp>
+        <stringProp name="dbUrl">jdbc:ydb:grpcs://rnd-ydb1.dev.moscow.alfaintra.net:2136/Root/asdb?secureConnectionCertificate=file:~/ca_dev.crt</stringProp>
+        <stringProp name="driver">tech.ydb.jdbc.YdbDriver</stringProp>
+        <stringProp name="initQuery"></stringProp>
+        <boolProp name="keepAlive">true</boolProp>
+        <stringProp name="password">Pa$$w0rd</stringProp>
+        <stringProp name="poolMax">0</stringProp>
+        <boolProp name="preinit">false</boolProp>
+        <stringProp name="timeout">10000</stringProp>
+        <stringProp name="transactionIsolation">DEFAULT</stringProp>
+        <stringProp name="trimInterval">60000</stringProp>
+        <stringProp name="username">user1</stringProp>
+      </JDBCDataSource>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV account_number1 linux">
+        <stringProp name="delimiter">,</stringProp>
+        <stringProp name="fileEncoding">UTF-8</stringProp>
+        <stringProp name="filename">/home/u_m2hx7/accounts_for_jmeter.csv</stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <boolProp name="quotedData">true</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="variableNames">account_number1</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV account_number2 linux">
+        <stringProp name="delimiter">,</stringProp>
+        <stringProp name="fileEncoding">UTF-8</stringProp>
+        <stringProp name="filename">/home/u_m2hx7/accounts_for_jmeter.csv</stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <boolProp name="quotedData">true</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="variableNames">account_number2</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager">
+        <collectionProp name="CookieManager.cookies"/>
+        <boolProp name="CookieManager.clearEachIteration">false</boolProp>
+        <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
+      </CookieManager>
+      <hashTree/>
+      <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager">
+        <boolProp name="clearEachIteration">false</boolProp>
+        <boolProp name="useExpires">true</boolProp>
+        <boolProp name="CacheManager.controlledByThread">false</boolProp>
+      </CacheManager>
+      <hashTree/>
+      <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener">
+        <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="influxdbMetricsSender" elementType="Argument">
+              <stringProp name="Argument.name">influxdbMetricsSender</stringProp>
+              <stringProp name="Argument.value">org.apache.jmeter.visualizers.backend.influxdb.HttpMetricsSender</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="influxdbUrl" elementType="Argument">
+              <stringProp name="Argument.name">influxdbUrl</stringProp>
+              <stringProp name="Argument.value">http://monitor.dev.moscow.alfaintra.net:8428/write</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="application" elementType="Argument">
+              <stringProp name="Argument.name">application</stringProp>
+              <stringProp name="Argument.value">${__TestPlanName}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="measurement" elementType="Argument">
+              <stringProp name="Argument.name">measurement</stringProp>
+              <stringProp name="Argument.value">jmeter</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="summaryOnly" elementType="Argument">
+              <stringProp name="Argument.name">summaryOnly</stringProp>
+              <stringProp name="Argument.value">false</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="samplersRegex" elementType="Argument">
+              <stringProp name="Argument.name">samplersRegex</stringProp>
+              <stringProp name="Argument.value">.*</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="percentiles" elementType="Argument">
+              <stringProp name="Argument.name">percentiles</stringProp>
+              <stringProp name="Argument.value">90;95;99</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="testTitle" elementType="Argument">
+              <stringProp name="Argument.name">testTitle</stringProp>
+              <stringProp name="Argument.value">${__P(testTitle)}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="eventTags" elementType="Argument">
+              <stringProp name="Argument.name">eventTags</stringProp>
+              <stringProp name="Argument.value">${__time()}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </elementProp>
+        <stringProp name="classname">org.apache.jmeter.visualizers.backend.influxdb.InfluxdbBackendListenerClient</stringProp>
+      </BackendListener>
+      <hashTree/>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <SetupThreadGroup guiclass="SetupThreadGroupGui" testclass="SetupThreadGroup" testname="setUp">
+        <intProp name="ThreadGroup.num_threads">1</intProp>
+        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </SetupThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jmeter_events" enabled="true">
+          <intProp name="HTTPSampler.concurrentPool">6</intProp>
+          <stringProp name="HTTPSampler.domain">${urlMetric}</stringProp>
+          <stringProp name="HTTPSampler.port">${portMetric}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${protocolMetric}</stringProp>
+          <stringProp name="HTTPSampler.path">${pathMetric}</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">jmeter_events{application=&quot;${__TestPlanName}&quot;,tags=&quot;${__P(jmeterEventTags)}&quot;,event=&quot;start&quot;,testTitle=&quot;${__P(testTitle)}&quot;} ${__P(jmeterEventTags)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.implementation">Java</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="setIgnore" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">prev.setIgnore()
+</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223PostProcessor>
+          <hashTree/>
+        </hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="SC: prepared_date"/>
+        <hashTree>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="SC: main/t_ccy_rate"/>
+          <hashTree>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="get_date_from_t_ccy_rate">
+              <stringProp name="dataSource">ydb_connection</stringProp>
+              <stringProp name="query">SELECT c_date FROM `main/t_ccy_rate`
+WHERE c_ccy=&quot;RUR&quot;
+ORDER BY c_date DESC
+LIMIT 1;</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultSetMaxRows"></stringProp>
+              <stringProp name="resultVariable">last_date_t_ccy_rate</stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+                <stringProp name="cacheKey">true</stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="script">import java.util.regex.Pattern
+import java.util.regex.Matcher
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+def lastDateValue_t_ccy_rate = vars.get(&quot;last_date_t_ccy_rate&quot;)
+def isCurDate_t_ccy_rate = false
+if (lastDateValue_t_ccy_rate != null &amp;&amp; !lastDateValue_t_ccy_rate.isEmpty()) {
+	try {
+		def pattern = Pattern.compile(&quot;c_date=(\\d{4}-\\d{2}-\\d{2})&quot;)
+		def matcher = pattern.matcher(lastDateValue_t_ccy_rate)
+		if (matcher.find()) {
+			def extractedDateStr = matcher.group(1)
+			def extractedDate = LocalDate.parse(extractedDateStr)
+			def currentDate = LocalDate.now()
+			isCurDate_t_ccy_rate = !(extractedDate.isEqual(currentDate))
+			} else {
+				log.error(&quot;Не удалось извлечь дату из: &quot; + lastDateValue_t_ccy_rate)
+			}
+    } catch (Exception e) {
+        log.error(&quot;Ошибка при обработке даты: &quot; + e.getMessage())
+    }
+} else {
+    log.error(&quot;Переменная last_date_t_ccy_rate не существует или пустая&quot;)
+}
+
+// Сохраняем результат в переменную isCurDate
+vars.put(&quot;isCurDate_t_ccy_rate&quot;, isCurDate_t_ccy_rate.toString())</stringProp>
+                <stringProp name="scriptLanguage">groovy</stringProp>
+              </JSR223PostProcessor>
+              <hashTree/>
+            </hashTree>
+            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller">
+              <stringProp name="IfController.condition">${isCurDate_t_ccy_rate}</stringProp>
+              <boolProp name="IfController.evaluateAll">false</boolProp>
+              <boolProp name="IfController.useExpression">true</boolProp>
+            </IfController>
+            <hashTree>
+              <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="insert_date_in_t_ccy_rate">
+                <stringProp name="dataSource">ydb_connection</stringProp>
+                <stringProp name="query">INSERT INTO `main/t_ccy_rate`
+(`c_ccy`, `c_date`, `c_rate`, `c_changed`)
+VALUES (&quot;RUR&quot;, Date(&quot;${insert_cur_date}&quot;), CAST(1 as Decimal(15,9)), Timestamp(&quot;${insert_cur_timestamp}&quot;));
+</stringProp>
+                <stringProp name="queryArguments"></stringProp>
+                <stringProp name="queryArgumentsTypes"></stringProp>
+                <stringProp name="queryTimeout"></stringProp>
+                <stringProp name="queryType">Update Statement</stringProp>
+                <stringProp name="resultSetHandler">Store as String</stringProp>
+                <stringProp name="resultSetMaxRows"></stringProp>
+                <stringProp name="resultVariable">insert_last_date_t_ccy_rate</stringProp>
+                <stringProp name="variableNames"></stringProp>
+              </JDBCSampler>
+              <hashTree>
+                <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor">
+                  <stringProp name="scriptLanguage">groovy</stringProp>
+                  <stringProp name="parameters"></stringProp>
+                  <stringProp name="filename"></stringProp>
+                  <stringProp name="cacheKey">true</stringProp>
+                  <stringProp name="script">import java.time.*
+import java.time.format.DateTimeFormatter
+
+// Получаем текущее время в UTC
+def currentDateTime = Instant.now()
+
+// Форматируем дату для поля c_date (формат: YYYY-MM-DD)
+def insertCurDate = LocalDate.now(ZoneId.of(&quot;UTC&quot;)).toString()
+
+// Форматируем timestamp для поля c_changed (формат: ISO instant в UTC)
+def insertCurTimestamp = currentDateTime.toString()
+
+// Устанавливаем переменные для использования в SQL запросе
+vars.put(&quot;insert_cur_date&quot;, insertCurDate)
+vars.put(&quot;insert_cur_timestamp&quot;, insertCurTimestamp)
+</stringProp>
+                </JSR223PreProcessor>
+                <hashTree/>
+              </hashTree>
+            </hashTree>
+          </hashTree>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="SC: main/t_filial"/>
+          <hashTree>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="get_date_from_t_filial">
+              <stringProp name="dataSource">ydb_connection</stringProp>
+              <stringProp name="query">SELECT c_date_current FROM `main/t_filial`
+WHERE c_filial=&quot;filial1&quot;
+ORDER BY c_date_current DESC
+LIMIT 1;</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultSetMaxRows"></stringProp>
+              <stringProp name="resultVariable">last_date_t_filial</stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+                <stringProp name="cacheKey">true</stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="script">import java.util.regex.Pattern
+import java.util.regex.Matcher
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+def lastDateValue_t_filial = vars.get(&quot;last_date_t_filial&quot;)
+def isCurDate_t_filial = false
+if (lastDateValue_t_filial != null &amp;&amp; !lastDateValue_t_filial.isEmpty()) {
+	try {
+		def pattern = Pattern.compile(&quot;c_date_current=(\\d{4}-\\d{2}-\\d{2})&quot;)
+		def matcher = pattern.matcher(lastDateValue_t_filial)
+		if (matcher.find()) {
+			def extractedDateStr = matcher.group(1)
+			def extractedDate = LocalDate.parse(extractedDateStr)
+			def currentDate = LocalDate.now()
+			isCurDate_t_filial = !(extractedDate.isEqual(currentDate))
+			} else {
+				log.error(&quot;Не удалось извлечь дату из: &quot; + lastDateValue_t_filial)
+			}
+    } catch (Exception e) {
+        log.error(&quot;Ошибка при обработке даты: &quot; + e.getMessage())
+    }
+} else {
+    log.error(&quot;Переменная last_date_t_filial не существует или пустая&quot;)
+}
+
+// Сохраняем результат в переменную isCurDate
+vars.put(&quot;isCurDate_t_filial&quot;, isCurDate_t_filial.toString())</stringProp>
+                <stringProp name="scriptLanguage">groovy</stringProp>
+              </JSR223PostProcessor>
+              <hashTree/>
+            </hashTree>
+            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller">
+              <stringProp name="IfController.condition">${isCurDate_t_filial}</stringProp>
+              <boolProp name="IfController.evaluateAll">false</boolProp>
+              <boolProp name="IfController.useExpression">true</boolProp>
+            </IfController>
+            <hashTree>
+              <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="insert_date_in_t_filial">
+                <stringProp name="dataSource">ydb_connection</stringProp>
+                <stringProp name="query">UPSERT INTO `main/t_filial`
+( `c_filial`, `c_bic`, `c_regno`, `c_description`, `c_date_current`, `c_changed` )
+VALUES (&quot;filial1&quot;, &quot;999000004&quot;, &quot;12349&quot;, &quot;филиал1&quot;, Date(&quot;${insert_cur_date}&quot;), Timestamp(&quot;${insert_cur_timestamp}&quot;));
+</stringProp>
+                <stringProp name="queryArguments"></stringProp>
+                <stringProp name="queryArgumentsTypes"></stringProp>
+                <stringProp name="queryTimeout"></stringProp>
+                <stringProp name="queryType">Update Statement</stringProp>
+                <stringProp name="resultSetHandler">Store as String</stringProp>
+                <stringProp name="resultSetMaxRows"></stringProp>
+                <stringProp name="resultVariable">insert_last_date_t_filial</stringProp>
+                <stringProp name="variableNames"></stringProp>
+              </JDBCSampler>
+              <hashTree>
+                <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor">
+                  <stringProp name="scriptLanguage">groovy</stringProp>
+                  <stringProp name="parameters"></stringProp>
+                  <stringProp name="filename"></stringProp>
+                  <stringProp name="cacheKey">true</stringProp>
+                  <stringProp name="script">import java.time.*
+import java.time.format.DateTimeFormatter
+
+// Получаем текущее время в UTC
+def currentDateTime = Instant.now()
+
+// Форматируем дату для поля c_date (формат: YYYY-MM-DD)
+def insertCurDate = LocalDate.now(ZoneId.of(&quot;UTC&quot;)).toString()
+
+// Форматируем timestamp для поля c_changed (формат: ISO instant в UTC)
+def insertCurTimestamp = currentDateTime.toString()
+
+// Устанавливаем переменные для использования в SQL запросе
+vars.put(&quot;insert_cur_date&quot;, insertCurDate)
+vars.put(&quot;insert_cur_timestamp&quot;, insertCurTimestamp)
+</stringProp>
+                </JSR223PreProcessor>
+                <hashTree/>
+              </hashTree>
+            </hashTree>
+          </hashTree>
+        </hashTree>
+      </hashTree>
+      <kg.apc.jmeter.threads.SteppingThreadGroup guiclass="kg.apc.jmeter.threads.SteppingThreadGroupGui" testclass="kg.apc.jmeter.threads.SteppingThreadGroup" testname="Main">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <stringProp name="ThreadGroup.num_threads">${__P(all_threads,65)}</stringProp>
+        <stringProp name="Threads initial delay">0</stringProp>
+        <stringProp name="Start users count">${__P(add_threads,5)}</stringProp>
+        <stringProp name="Start users count burst">${__P(start_threads,40)}</stringProp>
+        <stringProp name="Start users period">${__P(hold_time,600)}</stringProp>
+        <stringProp name="Stop users count">5</stringProp>
+        <stringProp name="Stop users period">10</stringProp>
+        <stringProp name="flighttime">${__P(hold_time,600)}</stringProp>
+        <stringProp name="rampUp">300</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <intProp name="LoopController.loops">-1</intProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </kg.apc.jmeter.threads.SteppingThreadGroup>
+      <hashTree>
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action">
+          <intProp name="ActionProcessor.action">1</intProp>
+          <intProp name="ActionProcessor.target">0</intProp>
+          <stringProp name="ActionProcessor.duration">0</stringProp>
+        </TestAction>
+        <hashTree>
+          <ConstantThroughputTimer guiclass="TestBeanGUI" testclass="ConstantThroughputTimer" testname="Constant Throughput Timer" enabled="true">
+            <intProp name="calcMode">0</intProp>
+            <stringProp name="throughput">${__P(user_rpm,60)}</stringProp>
+          </ConstantThroughputTimer>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="bo_exec">
+          <stringProp name="HTTPSampler.path">http://rnd-dev1.dev.moscow.alfaintra.net:8282/api/v1/bank-orders/exec</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;operationExternalUid&quot;: &quot;${uuid_key}&quot;,&#xd;
+  &quot;operationDate&quot;: &quot;2025-09-01&quot;,&#xd;
+  &quot;amount&quot;: 150,&#xd;
+  &quot;amountCurrency&quot;: &quot;RUR&quot;,&#xd;
+  &quot;payerAccount&quot;: &quot;${accountNumber1}&quot;,&#xd;
+  &quot;payerName&quot;: &quot;КОРОЛЕВА ОКСАНА ВЛАДИМИРОВНА&quot;,&#xd;
+  &quot;payeeAccount&quot;: &quot;${account_number2}&quot;,&#xd;
+  &quot;payeeName&quot;: &quot;Савельев Еремей Захарьевич&quot;,&#xd;
+  &quot;paymentPurpose&quot;: &quot;Тестовый перевод между клиентами&quot;,&#xd;
+  &quot;paymentPriority&quot;: 5&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">import com.fasterxml.uuid.Generators;
+import com.fasterxml.uuid.impl.TimeBasedEpochGenerator;
+
+TimeBasedEpochGenerator generator = Generators.timeBasedEpochGenerator();
+String uuid_key = generator.generate().toString();
+if (uuid_key != null &amp;&amp; !uuid_key.isEmpty()) {
+	vars.put(&quot;uuid_key&quot;, uuid_key)
+} else {
+    log.error(&quot;Переменная last_date_t_ccy_rate не существует или пустая&quot;)
+}
+
+String accountNumber1 = vars.get(&quot;account_number1&quot;)
+if (accountNumber1 != null &amp;&amp; !accountNumber1.isEmpty()) {
+	vars.put(&quot;accountNumber1&quot;, accountNumber1)
+} else {
+    log.error(&quot;Переменная accountNumber1 не существует или пустая&quot;)
+}
+
+String accountNumber2 = vars.get(&quot;account_number2&quot;)
+if (accountNumber2 != null &amp;&amp; !accountNumber2.isEmpty()) {
+	vars.put(&quot;accountNumber2&quot;, accountNumber2)
+} else {
+    log.error(&quot;Переменная accountNumber2 не существует или пустая&quot;)
+}
+</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223PreProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1469323377">EXECUTED</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <PostThreadGroup guiclass="PostThreadGroupGui" testclass="PostThreadGroup" testname="tearDown">
+        <intProp name="ThreadGroup.num_threads">1</intProp>
+        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </PostThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jmeter_events" enabled="true">
+          <intProp name="HTTPSampler.concurrentPool">6</intProp>
+          <stringProp name="HTTPSampler.domain">${urlMetric}</stringProp>
+          <stringProp name="HTTPSampler.port">${portMetric}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${protocolMetric}</stringProp>
+          <stringProp name="HTTPSampler.path">${pathMetric}</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">jmeter_events{application=&quot;${__TestPlanName}&quot;,tags=&quot;${__P(jmeterEventTags)}&quot;,event=&quot;end&quot;} ${__time()}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.implementation">Java</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="setIgnore">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">prev.setIgnore()
+</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223PostProcessor>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
