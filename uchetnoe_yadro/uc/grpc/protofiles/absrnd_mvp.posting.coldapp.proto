@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package absrnd_mvp.posting.coldapp;
+
+import "google/protobuf/timestamp.proto";
+import "absrnd_mvp.proto";
+
+// Оформление бухгалтерского учета
+message PostPayload {
+
+  // Информация об одном движении средств
+  message FundsMovement {
+    uint32 number = 1;  // Номер движения средств
+    FundsDirection funds_direction = 2; // Направление движения средста
+    string account_id = 3; // Идентификатор счета в формате UUID
+    string account_ccy  = 4; // Валюта счета
+    string amount_currency = 5; // Сумма в валюте счета
+    string amount_currency_base = 6; // Сумма в базовой валюте счета
+    optional string hold_id = 7; // Идентификатор холда в формате UUID
+  }
+
+  optional google.protobuf.Timestamp posting_balance_date = 1; // Дата учета
+  repeated FundsMovement funds_movements = 2; // Движения средств
+}
+
+// Удаление проводки
+message DeletePayload {
+}
+
+// Откат проводки
+message RollbackPayload {
+}
+
+message PostingMessage {
+  string document_id = 1; // Внутренний идентификатор документа в формате UUID
+
+  oneof payload {
+    PostPayload post_payload = 2;
+    DeletePayload delete_payload = 3;
+    RollbackPayload rollback_payload = 4;
+  }
+}
