@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.example</groupId>
-  <artifactId>JointImport</artifactId>
+  <artifactId>JointImport_yc</artifactId>
   <version>1.0-SNAPSHOT</version>
   <build>
     <plugins>
@@ -40,26 +40,10 @@
       </plugin>
     </plugins>
   </build>
-  <repositories>
-    <repository>
-      <releases />
-      <id>alfa-site</id>
-      <name>alfa-site</name>
-      <url>https://binary.alfabank.ru/artifactory/public</url>
-    </repository>
-  </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <releases />
-      <id>alfaform.plugins</id>
-      <name>Alfaform plugins</name>
-      <url>https://binary.alfabank.ru/artifactory/public</url>
-    </pluginRepository>
-  </pluginRepositories>
   <properties>
-    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.target>21</maven.compiler.target>
     <main.class>JointImport.MainApp</main.class>
-    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.source>21</maven.compiler.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 </project>

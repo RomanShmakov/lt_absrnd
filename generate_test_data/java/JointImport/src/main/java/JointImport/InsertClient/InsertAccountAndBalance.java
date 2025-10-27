@@ -10,8 +10,10 @@ import java.util.*;
 import JointImport.Tables.Balance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import tech.ydb.auth.AuthProvider;
+import tech.ydb.auth.iam.CloudAuthHelper;
 import tech.ydb.common.transaction.TxMode;
-import tech.ydb.core.auth.StaticCredentials;
+
 import tech.ydb.core.grpc.GrpcTransport;
 import tech.ydb.table.SessionRetryContext;
 import tech.ydb.table.TableClient;
@@ -38,23 +40,28 @@ public final class InsertAccountAndBalance {
 
     // url
     //    private static final String connectionString = "grpcs://rnd-ydb1.moscow.alfaintra.net:2136/?database=/Root/asdb";
-    private static final String connectionString = "grpcs://rnd-ydb1.dev.moscow.alfaintra.net:2136/?database=/Root/asdb";
+    //    private static final String connectionString = "grpcs://rnd-ydb1.dev.moscow.alfaintra.net:2136/?database=/Root/asdb";
+    private static final String connectionString = "grpcs://lb.etn5e3bvin4d4i2rtgo0.ydb.mdb.yandexcloud.net:2135/?database=/ru-central1/b1g7sejgqt5m832v9oso/etn5e3bvin4d4i2rtgo0";
 
-    // crt
+    // TODO = crt
     //    private static final String saKeyFile = "C:\\ydb\\ca.crt";
     //    private static final String saKeyFile = "/home/u_m2hx7/ca.crt";
-    private static final String saKeyFile = "/home/u_m2hx7/ca_dev.crt";
+//    private static final String saKeyFile = "/Users/romansmakov/Documents/ydb/key.json";
+    private static final String saKeyFile = "/home/u_m2hx7/key.json";
 
     // Имя таблицы
     //    private static final String tableNameAccount = "tpcc/t_account";
     //    private static final String tableNameBalance = "/Root/asdb/tpcc/t_balance";
     private static final String tableNameAccount = "main/t_account";
-    private static final String tableNameBalance = "/Root/asdb/remains/t_balance";
+    private static final String tableNameBalance = "/ru-central1/b1g7sejgqt5m832v9oso/etn5e3bvin4d4i2rtgo0/remains/t_balance";
 
     //
-    // Количество запросов
-    private static final int COUNT_QUERY = 250000;
+    // TODO: Количество запросов
+    //  100 gb
+//    private static final int COUNT_QUERY = 25000;
+
     // Количество (строк Values / объектов BulkUpsert) в одном запросе
+    private static final int COUNT_QUERY = 1;
     private static final int COUNT_ROW_IN_QUERY = 1000;
     // ИТОГ ЗАПИСАННЫХ СТРОК = COUNT_QUERY * COUNT_ROW_IN_QUERY
     //
@@ -66,17 +73,22 @@ public final class InsertAccountAndBalance {
     private static final int AMOUNT_LENGTH = 20;
     private static final Random random = new SecureRandom();
     //
-    // Путь к файлу для записи
-//    private static final String csvFileAccountsForJMeter = "C:\\git\\lt\\uc\\grpc\\accounts_for_jmeter.csv";
-    private static final String csvFileAccountsForJMeter = "/home/u_m2hx7/accounts_for_jmeter2.csv";
+    // TODO = Путь к файлу для записи
+    //    private static final String csvFileAccountsForJMeter = "C:\\git\\lt\\uc\\grpc\\accounts_for_jmeter.csv";
+    //    private static final String csvFileAccountsForJMeter = "/home/u_m2hx7/accounts_for_jmeter.csv";
+    private static final String csvFileAccountsForJMeter = "/Users/romansmakov/Documents/ydb/accounts_for_jmeter.csv";
 
     //
     public static void InsertByOneAccount() {
         try {
-            byte[] certBytes = Files.readAllBytes(Paths.get(saKeyFile));
-            StaticCredentials authProvider = new StaticCredentials(usernameYDB, passwordYDB);
+//            byte[] certBytes = Files.readAllBytes(Paths.get(saKeyFile));
+
+//            StaticCredentials authProvider = new StaticCredentials(usernameYDB, passwordYDB);
+
+            AuthProvider authProvider = CloudAuthHelper.getServiceAccountFileAuthProvider(saKeyFile);
+
             try (GrpcTransport transport = GrpcTransport.forConnectionString(connectionString)
-                    .withSecureConnection(certBytes)
+//                    .withSecureConnection(certBytes)
                     .withAuthProvider(authProvider)
                     .build()) {
                 try (TableClient tableClient = TableClient.newClient(transport).build()) {
