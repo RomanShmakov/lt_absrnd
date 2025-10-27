@@ -76,7 +76,8 @@ public final class InsertAccountAndBalance {
     // TODO = Путь к файлу для записи
     //    private static final String csvFileAccountsForJMeter = "C:\\git\\lt\\uc\\grpc\\accounts_for_jmeter.csv";
     //    private static final String csvFileAccountsForJMeter = "/home/u_m2hx7/accounts_for_jmeter.csv";
-    private static final String csvFileAccountsForJMeter = "/Users/romansmakov/Documents/ydb/accounts_for_jmeter.csv";
+//    private static final String csvFileAccountsForJMeter = "/Users/romansmakov/Documents/ydb/accounts_for_jmeter.csv";
+    private static final String csvFileAccountsForJMeter = "/home/u_m2hx7/accounts_for_jmeter.csv";
 
     //
     public static void InsertByOneAccount() {
