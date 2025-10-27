@@ -301,7 +301,7 @@ prev.setConnectTime(0)  // Время установки соединения</s
           <stringProp name="parameters"></stringProp>
           <stringProp name="script">import absrnd_mvp.client.PostingClient
 try {
-    String result = PostingClient.sendRequest(&quot;95121414528178950879&quot;, &quot;45142505639095698962&quot;)
+    String result = PostingClient.sendRequest(vars.get(&quot;account_number1&quot;), vars.get(&quot;account_number2&quot;))
 
     SampleResult.setResponseMessage(result.toString())
     SampleResult.setResponseData(result.toString(), &quot;UTF-8&quot;)
