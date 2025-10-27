@@ -50,10 +50,10 @@ public final class InsertBalance {
     //
     // TODO: Количество запросов
     //  25000 = 100 gb
-    // Количество (строк Values / объектов BulkUpsert) в одном запросе
-    private static final int COUNT_QUERY = 250000;
-//    private static final int COUNT_ROW_IN_QUERY = 1000;
-    private static final int COUNT_ROW_IN_QUERY = 400;
+    //  Количество (строк Values / объектов BulkUpsert) в одном запросе
+    private static final int COUNT_QUERY = 3000;
+    private static final int COUNT_ROW_IN_QUERY = 5000;
+//    private static final int COUNT_ROW_IN_QUERY = 400;
     // ИТОГ ЗАПИСАННЫХ СТРОК = COUNT_QUERY * COUNT_ROW_IN_QUERY
     //
     // Данные для вставки в таблицу
