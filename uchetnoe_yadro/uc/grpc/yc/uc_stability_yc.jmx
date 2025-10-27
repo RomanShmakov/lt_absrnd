@@ -6,6 +6,8 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="-TG_wait_journal" enabled="false">
@@ -161,7 +163,7 @@ prev.setConnectTime(0)  // Время установки соединения</s
         <stringProp name="username">user1</stringProp>
       </JDBCDataSource>
       <hashTree/>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="[GENERAL] Parameters">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="[GENERAL] Parameters" enabled="true">
         <collectionProp name="Arguments.arguments">
           <elementProp name="protocolMetric" elementType="Argument">
             <stringProp name="Argument.name">protocolMetric</stringProp>
@@ -196,7 +198,7 @@ prev.setConnectTime(0)  // Время установки соединения</s
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV account_number1 linux" enabled="false">
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV account_number1 linux">
         <stringProp name="delimiter">,</stringProp>
         <stringProp name="fileEncoding">UTF-8</stringProp>
         <stringProp name="filename">/home/u_m2hx7/accounts_for_jmeter.csv</stringProp>
@@ -208,7 +210,7 @@ prev.setConnectTime(0)  // Время установки соединения</s
         <stringProp name="variableNames">account_number1</stringProp>
       </CSVDataSet>
       <hashTree/>
-      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV account_number2 linux" enabled="false">
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV account_number2 linux">
         <stringProp name="delimiter">,</stringProp>
         <stringProp name="fileEncoding">UTF-8</stringProp>
         <stringProp name="filename">/home/u_m2hx7/accounts_for_jmeter.csv</stringProp>
@@ -220,7 +222,7 @@ prev.setConnectTime(0)  // Время установки соединения</s
         <stringProp name="variableNames">account_number2</stringProp>
       </CSVDataSet>
       <hashTree/>
-      <SetupThreadGroup guiclass="SetupThreadGroupGui" testclass="SetupThreadGroup" testname="setUp">
+      <SetupThreadGroup guiclass="SetupThreadGroupGui" testclass="SetupThreadGroup" testname="setUp" enabled="true">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
@@ -264,7 +266,7 @@ prev.setConnectTime(0)  // Время установки соединения</s
           <hashTree/>
         </hashTree>
       </hashTree>
-      <kg.apc.jmeter.threads.SteppingThreadGroup guiclass="kg.apc.jmeter.threads.SteppingThreadGroupGui" testclass="kg.apc.jmeter.threads.SteppingThreadGroup" testname="STG_${__P(add_threads,1)}_${__P(user_rpm,1)}">
+      <kg.apc.jmeter.threads.SteppingThreadGroup guiclass="kg.apc.jmeter.threads.SteppingThreadGroupGui" testclass="kg.apc.jmeter.threads.SteppingThreadGroup" testname="STG_${__P(add_threads,1)}_${__P(user_rpm,1)}" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="ThreadGroup.num_threads">${__P(add_threads,1)}</stringProp>
         <stringProp name="Threads initial delay">0</stringProp>
@@ -408,7 +410,7 @@ try {
           <hashTree/>
         </hashTree>
       </hashTree>
-      <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener">
+      <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="true">
         <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments">
           <collectionProp name="Arguments.arguments">
             <elementProp name="influxdbMetricsSender" elementType="Argument">
