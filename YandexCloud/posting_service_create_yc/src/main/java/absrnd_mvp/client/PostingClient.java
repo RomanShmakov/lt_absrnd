@@ -85,9 +85,9 @@ public class PostingClient {
 
     // Отправить запрос
     public static String sendRequest(String accountNumber1, String accountNumber2) {
-//        if (accountNumber1 == null || accountNumber2 == null) {
-//            return "Success: false, Code: 400, Status: NULL_DATA, Description: account_number1 or account_number1 is null";
-//        }
+        //        if (accountNumber1 == null || accountNumber2 == null) {
+        //            return "Success: false, Code: 400, Status: NULL_DATA, Description: account_number1 or account_number1 is null";
+        //        }
         try {
             // Получаем stub для текущего потока
             PostingServiceGrpc.PostingServiceBlockingStub stub = getStubForCurrentThread();
