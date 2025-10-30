@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package absrnd_mvp;
+
+// Направление движения средста
+enum FundsDirection {
+  FUNDS_DIRECTION_DEBIT = 0;
+  FUNDS_DIRECTION_CREDIT = 1;
+}
+
+// Тип транзакции
+enum TransactionType {
+  TRANSACTION_TYPE_POSTING = 0;
+  TRANSACTION_TYPE_HOLD = 1;
+  TRANSACTION_TYPE_OVERDRAFT = 2;
+}
+
+// Тип действий
+enum ActionType {
+  ACTION_TYPE_POST = 0;
+  ACTION_TYPE_POST_ROLLBACK = 1;
+  ACTION_TYPE_DELETE = 2;
+  ACTION_TYPE_DELETE_ROLLBACK = 3;
+}
