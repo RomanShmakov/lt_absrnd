@@ -167,10 +167,10 @@ try {
     def descMatcher = (result =~ /Description:\s*(.*)/)
     String description = descMatcher.find() ? descMatcher.group(1) : &quot;No description&quot;
     
-    String newResponseData = (&quot;\&quot;&quot; + responseCode.toString() + &quot;\&quot;&quot; + &quot;-&quot; + &quot;\&quot;&quot; + status.toString() + &quot;\&quot;&quot; + &quot;-&quot; + &quot;\&quot;&quot; + description.toString() + &quot;\&quot;&quot;)
+    String newResponseData = (&quot;\&quot;&quot; + status.toString() + &quot;\&quot;&quot; + &quot;-&quot; + &quot;\&quot;&quot; + description.toString() + &quot;\&quot;&quot;)
     
     // status
-    SampleResult.setResponseMessage(status.toString())
+    SampleResult.setResponseMessage(newResponseData.toString())
     // description
     SampleResult.setResponseData(newResponseData.toString(), &quot;UTF-8&quot;)
     SampleResult.setBytes(newResponseData.toString().bytes.length)
