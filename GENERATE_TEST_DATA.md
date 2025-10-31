@@ -51,6 +51,3 @@ VALUES ("MOCO","044525593","1326","АО \"АЛЬФА-БАНК\"",null,Date("2025
 5.	csvFileAccountsForJMeter
 6.	COUNT_QUERY и COUNT_ROW_IN_QUERY (при необходимости)
 3.	указать в pom.xml желаемое название для jar-файла: <artifactId>JointImport_AccountBalance_yc</artifactId>
-
-
-<img width="468" height="659" alt="image" src="https://github.com/user-attachments/assets/3a493ffd-40dd-4bec-9a3f-d8a83844ac94" />
