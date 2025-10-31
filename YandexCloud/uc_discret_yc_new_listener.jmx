@@ -43,7 +43,7 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV account_number1" enabled="true">
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV account_number1">
         <stringProp name="delimiter">,</stringProp>
         <stringProp name="fileEncoding">UTF-8</stringProp>
         <stringProp name="filename">/home/u_m2hx7/accounts_for_jmeter.csv</stringProp>
@@ -78,7 +78,7 @@
         </elementProp>
       </SetupThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jmeter_events" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jmeter_events">
           <intProp name="HTTPSampler.concurrentPool">6</intProp>
           <stringProp name="HTTPSampler.domain">${urlMetric}</stringProp>
           <stringProp name="HTTPSampler.port">${portMetric}</stringProp>
@@ -284,6 +284,38 @@ try {
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jmeter_jsr223_listener" enabled="false">
+          <intProp name="HTTPSampler.concurrentPool">6</intProp>
+          <stringProp name="HTTPSampler.domain">${urlMetric}</stringProp>
+          <stringProp name="HTTPSampler.port">${portMetric}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${protocolMetric}</stringProp>
+          <stringProp name="HTTPSampler.path">${pathMetric}</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">jmeter_events{application=&quot;${__TestPlanName}&quot;,tags=&quot;${jmeterEventTags}&quot;,event=&quot;start&quot;,testTitle=&quot;${testTitle}&quot;} ${jmeterEventTags}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.implementation">Java</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="setIgnore" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">prev.setIgnore()
+</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223PostProcessor>
+          <hashTree/>
+        </hashTree>
       </hashTree>
       <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="false">
         <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments">
@@ -412,7 +444,7 @@ log.info(&quot;Sending metric: &quot; + metricData)
 
 // Отправляем в VictoriaMetrics
 def client = HttpClients.createDefault()
-def post = new HttpPost(&quot;http://monitor.yc.moscow.alfaintra.net:8428/api/v1/import&quot;)
+def post = new HttpPost(&quot;http://monitor.yc.moscow.alfaintra.net:8428/api/v1/import/prometheus&quot;)
 
 try {
     def json = JsonOutput.toJson(metricData)
