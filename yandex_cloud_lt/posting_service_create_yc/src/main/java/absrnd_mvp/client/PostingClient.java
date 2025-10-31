@@ -15,7 +15,8 @@ import java.util.concurrent.TimeUnit;
 public class PostingClient {
 
     // TODO: поменять на хост и порт, где развернуто приложение
-    //  Параметры для подключения
+    //  absrndMvpHost
+    //  absrndMvpPort
     private static final String absrndMvpHost = "10.147.44.51";
     private static final int absrndMvpPort = 30002;
 

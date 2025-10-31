@@ -28,30 +28,27 @@ public final class InsertAccountAndBalance {
 
     private static final Logger logger = LoggerFactory.getLogger(InsertAccountAndBalance.class);
 
-
-    // задаем информацию для подключения к БД
-    private static final String usernameYDB = "user1";
-
-    // password
-    //    private static final String passwordYDB = "passw0rd";
-    private static final String passwordYDB = "Pa$$w0rd";
-
-    // TODO: Изменить ссылку на подключение к бд
-    //  url
+    // TODO: Изменить url на подключение к бд
+    //  connectionString
     private static final String connectionString = "grpcs://lb.etn5e3bvin4d4i2rtgo0.ydb.mdb.yandexcloud.net:2135/?database=/ru-central1/b1g7sejgqt5m832v9oso/etn5e3bvin4d4i2rtgo0";
 
-    // TODO: изменить путь к файлу для подключения к БД
-    //  crt
+    // TODO: изменить путь к key/crt файлу для подключения к БД
+    //  saKeyFile
     private static final String saKeyFile = "/home/u_m2hx7/key.json";
 
-    //TODO: изменить полный путь к таблице balance (нужно для bulkUpsert)
-    // table name
+    // TODO: изменить полный путь к таблице balance (нужно для bulkUpsert)
+    //  tableNameAccount
+    //  tableNameBalance
     private static final String tableNameAccount = "main/t_account";
     private static final String tableNameBalance = "/ru-central1/b1g7sejgqt5m832v9oso/etn5e3bvin4d4i2rtgo0/remains/t_balance";
 
-    //
-    // TODO: изменить количество выполняемых запросов
-    //  (внимание !) COUNT_QUERY отвечает за количество запросов, а COUNT_ROW_IN_QUERY за количество строчек, записанных за 1 запрос
+    // TODO: изменить путь к файлу с тестовыми данными для jmeter
+    //  csvFileAccountsForJMeter
+    private static final String csvFileAccountsForJMeter = "/home/u_m2hx7/accounts_for_jmeter.csv";
+
+
+    // TODO: при необходимости изменить объем генерируемых данных
+    //  (!!! внимание !!!) COUNT_QUERY отвечает за количество запросов, а COUNT_ROW_IN_QUERY за количество строчек, записанных за 1 запрос
     //  ИТОГ ЗАПИСАННЫХ СТРОК = COUNT_QUERY * COUNT_ROW_IN_QUERY
     //  25000 = +_ 1000 gb
     private static final int COUNT_QUERY = 25000;
@@ -65,37 +62,19 @@ public final class InsertAccountAndBalance {
     private static final int AMOUNT_LENGTH = 20;
     private static final Random random = new SecureRandom();
 
-
-    // TODO: изменить путь к файлу для jmeter
-    //    private static final String csvFileAccountsForJMeter = "C:\\git\\lt\\uc\\grpc\\accounts_for_jmeter.csv";
-    //    private static final String csvFileAccountsForJMeter = "/home/u_m2hx7/accounts_for_jmeter.csv";
-//    private static final String csvFileAccountsForJMeter = "/Users/romansmakov/Documents/ydb/accounts_for_jmeter.csv";
-    private static final String csvFileAccountsForJMeter = "/home/u_m2hx7/accounts_for_jmeter.csv";
-
-    //
     public static void InsertByOneAccount() {
         try {
-//            byte[] certBytes = Files.readAllBytes(Paths.get(saKeyFile));
-
-//            StaticCredentials authProvider = new StaticCredentials(usernameYDB, passwordYDB);
-
             AuthProvider authProvider = CloudAuthHelper.getServiceAccountFileAuthProvider(saKeyFile);
-
             try (GrpcTransport transport = GrpcTransport.forConnectionString(connectionString)
-//                    .withSecureConnection(certBytes)
                     .withAuthProvider(authProvider)
                     .build()) {
                 try (TableClient tableClient = TableClient.newClient(transport).build()) {
                     SessionRetryContext retryCtx = SessionRetryContext.create(tableClient).build();
-
-
                     for (int i = 0; i < COUNT_QUERY; i++) {
                         try {
-
                             /*
                                     Заполнение 2х таблиц t_account и t_balance
                             */
-
                             insertQuery(retryCtx, tableNameAccount, tableNameBalance);
 
                         } catch (RuntimeException e) {
@@ -110,7 +89,6 @@ public final class InsertAccountAndBalance {
         }
     }
 
-
     public static void insertQuery(SessionRetryContext retryCtx, String tableNameAccount, String tableNameBalance) {
         // Переменные для генерации запроса
         StringBuilder sb = new StringBuilder();
@@ -118,13 +96,11 @@ public final class InsertAccountAndBalance {
         List<Balance> batchBalance = new ArrayList<>();
 
         FileWriter writer = null;
-
         try {
             writer = new FileWriter(csvFileAccountsForJMeter, true);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         // Генерируем параметры для запроса
         for (int i = 1; i <= COUNT_ROW_IN_QUERY; i++) {
             // Генерация нескольких строк Values, чтобы подставить в них значения
@@ -207,7 +183,6 @@ public final class InsertAccountAndBalance {
                 e.printStackTrace();
             }
         }
-
         // Собираем запрос
         // Параметры для запроса
         String valuesForQuery = sb.toString();

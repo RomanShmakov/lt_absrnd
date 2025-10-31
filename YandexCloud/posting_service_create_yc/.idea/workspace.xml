@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6120f209-9530-4377-bd8c-234caeb34964" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../(ПРИМЕР)_accounts_for_jmeter.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JointImport/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JointImport/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JointImport/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JointImport/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JointImport/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JointImport/JointImport_AccountBalance_yc-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JointImport/JointImport_Balance_yc-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JointImport/dependency-reduced-pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JointImport/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JointImport/src/main/java/JointImport/InsertClient/InsertAccountAndBalance.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JointImport/src/main/java/JointImport/InsertClient/InsertBalance.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JointImport/src/main/java/JointImport/MainApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JointImport/src/main/java/JointImport/Tables/Account.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JointImport/src/main/java/JointImport/Tables/Balance.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JointImport/src/main/java/JointImport/Tables/Customer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JointImport/src/main/java/JointImport/Tables/RemainsappFundsMovement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jmeter-plugins-casutg-3.1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jmeter-plugins-cmn-jmeter-0.7.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jmeter-plugins-manager-1.10.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../posting_service_create_yc-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/absrnd_mvp.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/absrnd_mvp_posting_mainapp.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/posting_service_create_yc-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/absrnd_mvp/AbsrndMvp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/absrnd_mvp/client/PostingClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/absrnd_mvp/posting/mainapp/AbsrndMvpPostingMainapp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/absrnd_mvp/posting/mainapp/PostingServiceGrpc.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uc_discret_yc.jmx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uc_discret_yc_new_listener.jmx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uc_stability_yc.jmx" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="34n1I829uDGepw8j5fKIW5gCN4f" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.posting_service_create_yc [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.posting_service_create_yc [package].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/romansmakov/Documents/GitHub/lt/YandexCloud/posting_service_create_yc&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="absrnd_mvp.client.Main" />
+      <module name="posting_service_create_yc" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="absrnd_mvp.client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6120f209-9530-4377-bd8c-234caeb34964" name="Changes" comment="" />
+      <created>1761834438941</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1761834438941</updated>
+    </task>
+    <servers />
+  </component>
+</project>

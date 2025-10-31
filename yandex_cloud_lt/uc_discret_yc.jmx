@@ -115,14 +115,14 @@
       </hashTree>
       <kg.apc.jmeter.threads.SteppingThreadGroup guiclass="kg.apc.jmeter.threads.SteppingThreadGroupGui" testclass="kg.apc.jmeter.threads.SteppingThreadGroup" testname="STG" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <stringProp name="ThreadGroup.num_threads">${__P(add_threads,1)}</stringProp>
+        <stringProp name="ThreadGroup.num_threads">800</stringProp>
         <stringProp name="Threads initial delay">0</stringProp>
-        <stringProp name="Start users count">${__P(add_threads,1)}</stringProp>
+        <stringProp name="Start users count">80</stringProp>
         <stringProp name="Start users count burst">0</stringProp>
-        <stringProp name="Start users period">0</stringProp>
-        <stringProp name="Stop users count">5</stringProp>
-        <stringProp name="Stop users period">5</stringProp>
-        <stringProp name="flighttime">${__P(hold_time,1)}</stringProp>
+        <stringProp name="Start users period">900</stringProp>
+        <stringProp name="Stop users count">10</stringProp>
+        <stringProp name="Stop users period">1</stringProp>
+        <stringProp name="flighttime">900</stringProp>
         <stringProp name="rampUp">60</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
           <intProp name="LoopController.loops">-1</intProp>
@@ -138,7 +138,11 @@
         <hashTree>
           <ConstantThroughputTimer guiclass="TestBeanGUI" testclass="ConstantThroughputTimer" testname="Constant Throughput Timer" enabled="true">
             <intProp name="calcMode">0</intProp>
-            <stringProp name="throughput">${__P(user_rpm,600)}</stringProp>
+            <doubleProp>
+              <name>throughput</name>
+              <value>600.0</value>
+              <savedValue>0.0</savedValue>
+            </doubleProp>
           </ConstantThroughputTimer>
           <hashTree/>
         </hashTree>
@@ -167,7 +171,7 @@ try {
     def descMatcher = (result =~ /Description:\s*(.*)/)
     String description = descMatcher.find() ? descMatcher.group(1) : &quot;No description&quot;
     
-    String newResponseData = (&quot;\&quot;&quot; + status.toString() + &quot;\&quot;&quot; + &quot;-&quot; + &quot;\&quot;&quot; + description.toString() + &quot;\&quot;&quot;)
+    String newResponseData = (status.toString() + &quot;-&quot; + description.toString())
     
     // status
     SampleResult.setResponseMessage(newResponseData.toString())
