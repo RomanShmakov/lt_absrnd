@@ -6,8 +6,6 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
-      <boolProp name="TestPlan.functional_mode">false</boolProp>
-      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="[GENERAL] Parameters">
@@ -45,7 +43,7 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV account_number1">
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV account_number1" enabled="true">
         <stringProp name="delimiter">,</stringProp>
         <stringProp name="fileEncoding">UTF-8</stringProp>
         <stringProp name="filename">/home/u_m2hx7/accounts_for_jmeter.csv</stringProp>
@@ -57,7 +55,7 @@
         <stringProp name="variableNames">account_number1</stringProp>
       </CSVDataSet>
       <hashTree/>
-      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV account_number2">
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV account_number2" enabled="true">
         <stringProp name="delimiter">,</stringProp>
         <stringProp name="fileEncoding">UTF-8</stringProp>
         <stringProp name="filename">/home/u_m2hx7/accounts_for_jmeter.csv</stringProp>
@@ -130,13 +128,13 @@
         </elementProp>
       </kg.apc.jmeter.threads.SteppingThreadGroup>
       <hashTree>
-        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action">
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
           <intProp name="ActionProcessor.action">1</intProp>
           <intProp name="ActionProcessor.target">0</intProp>
           <stringProp name="ActionProcessor.duration">0</stringProp>
         </TestAction>
         <hashTree>
-          <ConstantThroughputTimer guiclass="TestBeanGUI" testclass="ConstantThroughputTimer" testname="Constant Throughput Timer">
+          <ConstantThroughputTimer guiclass="TestBeanGUI" testclass="ConstantThroughputTimer" testname="Constant Throughput Timer" enabled="true">
             <intProp name="calcMode">0</intProp>
             <doubleProp>
               <name>throughput</name>
@@ -146,7 +144,7 @@
           </ConstantThroughputTimer>
           <hashTree/>
         </hashTree>
-        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="create_request">
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="create_request" enabled="true">
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
@@ -221,7 +219,7 @@ try {
         </elementProp>
       </PostThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jmeter_events">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jmeter_events" enabled="true">
           <intProp name="HTTPSampler.concurrentPool">6</intProp>
           <stringProp name="HTTPSampler.domain">${urlMetric}</stringProp>
           <stringProp name="HTTPSampler.port">${portMetric}</stringProp>
@@ -287,7 +285,7 @@ try {
           <hashTree/>
         </hashTree>
       </hashTree>
-      <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener">
+      <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="false">
         <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments">
           <collectionProp name="Arguments.arguments">
             <elementProp name="influxdbMetricsSender" elementType="Argument">
@@ -339,6 +337,62 @@ try {
         </elementProp>
         <stringProp name="classname">org.apache.jmeter.visualizers.backend.influxdb.InfluxdbBackendListenerClient</stringProp>
       </BackendListener>
+      <hashTree/>
+      <JSR223Listener guiclass="TestBeanGUI" testclass="JSR223Listener" testname="JSR223 Listener">
+        <stringProp name="cacheKey">true</stringProp>
+        <stringProp name="filename"></stringProp>
+        <stringProp name="parameters"></stringProp>
+        <stringProp name="script">import groovy.json.JsonOutput
+import org.apache.http.client.methods.HttpPost
+import org.apache.http.entity.StringEntity
+import org.apache.http.impl.client.HttpClients
+import org.apache.http.util.EntityUtils
+
+// Получаем данные текущего запроса
+def sampleResult = prev
+def label = sampleResult.getSampleLabel()
+def responseCode = sampleResult.getResponseCode()
+def responseMessage = sampleResult.getResponseMessage()
+def success = sampleResult.isSuccessful()
+def transaction = label // или можно использовать ctx.getCurrentSampler().getName()
+
+// Создаем JSON для метрики
+def metricData = [
+    name: label,
+    application: &quot;${__TestPlanName}&quot;, // имя приложения
+    responseCode: responseCode,
+    responseMessage: responseMessage,
+    transaction: transaction,
+    success: success,
+    timestamp: System.currentTimeMillis(),
+    duration: sampleResult.getTime(),
+    bytes: sampleResult.getBytesAsLong()
+]
+
+// Отправляем в VictoriaMetrics
+def client = HttpClients.createDefault()
+def post = new HttpPost(&quot;http://monitor.yc.moscow.alfaintra.net:8428/api/v1/import&quot;)
+
+try {
+    def json = JsonOutput.toJson(metricData)
+    def entity = new StringEntity(json)
+    entity.setContentType(&quot;application/json&quot;)
+    post.setEntity(entity)
+    
+    def response = client.execute(post)
+    def responseBody = EntityUtils.toString(response.getEntity())
+    
+    if (response.getStatusLine().getStatusCode() != 200) {
+        log.warn(&quot;Failed to send metric: &quot; + responseBody)
+    }
+} catch (Exception e) {
+    log.error(&quot;Error sending metric to VictoriaMetrics: &quot; + e.getMessage())
+} finally {
+    post.releaseConnection()
+}
+</stringProp>
+        <stringProp name="scriptLanguage">groovy</stringProp>
+      </JSR223Listener>
       <hashTree/>
     </hashTree>
   </hashTree>
