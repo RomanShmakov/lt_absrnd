@@ -398,14 +398,22 @@ try {
     post.setEntity(entity)
     
     def response = client.execute(post)
-    def responseBody = EntityUtils.toString(response.getEntity())
+    def statusCode = response.getStatusLine().getStatusCode()
     
-    log.info(&quot;VictoriaMetrics response: &quot; + responseBody)
-    
-    if (response.getStatusLine().getStatusCode() != 200) {
-        log.warn(&quot;Failed to send metric. Status: &quot; + response.getStatusLine().getStatusCode() + &quot;, Response: &quot; + responseBody)
+    // Проверяем наличие тела ответа перед его чтением
+    def responseBody = &quot;&quot;
+    if (response.getEntity() != null) {
+        responseBody = EntityUtils.toString(response.getEntity())
+        log.info(&quot;VictoriaMetrics response: &quot; + responseBody)
     } else {
+        log.info(&quot;VictoriaMetrics response: No response body (status: ${statusCode})&quot;)
+    }
+    
+    // VictoriaMetrics часто возвращает 204 No Content при успешной записи
+    if (statusCode == 200 || statusCode == 204) {
         log.info(&quot;Metric successfully sent to VictoriaMetrics&quot;)
+    } else {
+        log.warn(&quot;Failed to send metric. Status: &quot; + statusCode + &quot;, Response: &quot; + responseBody)
     }
 } catch (Exception e) {
     log.error(&quot;Error sending metric to VictoriaMetrics: &quot; + e.getMessage(), e)
