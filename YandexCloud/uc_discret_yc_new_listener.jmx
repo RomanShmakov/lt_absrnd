@@ -350,24 +350,35 @@ import org.apache.http.util.EntityUtils
 
 // Получаем данные текущего запроса
 def sampleResult = prev
+if (sampleResult == null) {
+    log.error(&quot;SampleResult is null - cannot send metric&quot;)
+    return
+}
+
 def label = sampleResult.getSampleLabel()
 def responseCode = sampleResult.getResponseCode()
 def responseMessage = sampleResult.getResponseMessage()
 def success = sampleResult.isSuccessful()
-def transaction = label // или можно использовать ctx.getCurrentSampler().getName()
+def transaction = label
+
+// Получаем имя тест-плана правильно
+def testPlanName = props.get(&quot;TestPlan.name&quot;) ?: &quot;UnknownTestPlan&quot;
 
 // Создаем JSON для метрики
 def metricData = [
-    name: label,
-    application: &quot;${__TestPlanName}&quot;, // имя приложения
-    responseCode: responseCode,
-    responseMessage: responseMessage,
-    transaction: transaction,
+    name: label ?: &quot;unknown&quot;,
+    application: testPlanName,
+    responseCode: responseCode ?: &quot;unknown&quot;,
+    responseMessage: responseMessage ?: &quot;unknown&quot;,
+    transaction: transaction ?: &quot;unknown&quot;,
     success: success,
     timestamp: System.currentTimeMillis(),
     duration: sampleResult.getTime(),
     bytes: sampleResult.getBytesAsLong()
 ]
+
+// Логируем для отладки
+log.info(&quot;Sending metric: &quot; + metricData)
 
 // Отправляем в VictoriaMetrics
 def client = HttpClients.createDefault()
@@ -375,22 +386,37 @@ def post = new HttpPost(&quot;http://monitor.yc.moscow.alfaintra.net:8428/api/v1
 
 try {
     def json = JsonOutput.toJson(metricData)
-    def entity = new StringEntity(json)
+    log.info(&quot;JSON to send: &quot; + json)
+    
+    if (json == null) {
+        log.error(&quot;Generated JSON is null&quot;)
+        return
+    }
+    
+    def entity = new StringEntity(json, &quot;UTF-8&quot;)
     entity.setContentType(&quot;application/json&quot;)
     post.setEntity(entity)
     
     def response = client.execute(post)
     def responseBody = EntityUtils.toString(response.getEntity())
     
+    log.info(&quot;VictoriaMetrics response: &quot; + responseBody)
+    
     if (response.getStatusLine().getStatusCode() != 200) {
-        log.warn(&quot;Failed to send metric: &quot; + responseBody)
+        log.warn(&quot;Failed to send metric. Status: &quot; + response.getStatusLine().getStatusCode() + &quot;, Response: &quot; + responseBody)
+    } else {
+        log.info(&quot;Metric successfully sent to VictoriaMetrics&quot;)
     }
 } catch (Exception e) {
-    log.error(&quot;Error sending metric to VictoriaMetrics: &quot; + e.getMessage())
+    log.error(&quot;Error sending metric to VictoriaMetrics: &quot; + e.getMessage(), e)
 } finally {
-    post.releaseConnection()
-}
-</stringProp>
+    try {
+        post.releaseConnection()
+        client.close()
+    } catch (Exception ex) {
+        log.warn(&quot;Error closing HTTP client: &quot; + ex.getMessage())
+    }
+}</stringProp>
         <stringProp name="scriptLanguage">groovy</stringProp>
       </JSR223Listener>
       <hashTree/>
