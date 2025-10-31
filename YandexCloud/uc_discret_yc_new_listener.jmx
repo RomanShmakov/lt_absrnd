@@ -364,17 +364,47 @@ def transaction = label
 // Получаем имя тест-плана правильно
 def testPlanName = props.get(&quot;TestPlan.name&quot;) ?: &quot;UnknownTestPlan&quot;
 
-// Создаем JSON для метрики
+// Создаем JSON для метрики в формате VictoriaMetrics
 def metricData = [
-    name: label ?: &quot;unknown&quot;,
-    application: testPlanName,
-    responseCode: responseCode ?: &quot;unknown&quot;,
-    responseMessage: responseMessage ?: &quot;unknown&quot;,
-    transaction: transaction ?: &quot;unknown&quot;,
-    success: success,
-    timestamp: System.currentTimeMillis(),
-    duration: sampleResult.getTime(),
-    bytes: sampleResult.getBytesAsLong()
+    [
+        metric: [
+            &quot;__name__&quot;: &quot;jmeter_jsr223_listener&quot;,
+            &quot;name&quot;: label ?: &quot;unknown&quot;,
+            &quot;application&quot;: testPlanName,
+            &quot;responseCode&quot;: responseCode ?: &quot;unknown&quot;,
+            &quot;responseMessage&quot;: responseMessage ?: &quot;unknown&quot;, 
+            &quot;transaction&quot;: transaction ?: &quot;unknown&quot;,
+            &quot;success&quot;: success.toString()
+        ],
+        values: [1], // счетчик всегда 1
+        timestamps: [System.currentTimeMillis()]
+    ],
+    [
+        metric: [
+            &quot;__name__&quot;: &quot;jmeter_jsr223_listener_duration&quot;,
+            &quot;name&quot;: label ?: &quot;unknown&quot;,
+            &quot;application&quot;: testPlanName,
+            &quot;responseCode&quot;: responseCode ?: &quot;unknown&quot;,
+            &quot;responseMessage&quot;: responseMessage ?: &quot;unknown&quot;,
+            &quot;transaction&quot;: transaction ?: &quot;unknown&quot;,
+            &quot;success&quot;: success.toString()
+        ],
+        values: [sampleResult.getTime()],
+        timestamps: [System.currentTimeMillis()]
+    ],
+    [
+        metric: [
+            &quot;__name__&quot;: &quot;jmeter_jsr223_listener_bytes&quot;, 
+            &quot;name&quot;: label ?: &quot;unknown&quot;,
+            &quot;application&quot;: testPlanName,
+            &quot;responseCode&quot;: responseCode ?: &quot;unknown&quot;,
+            &quot;responseMessage&quot;: responseMessage ?: &quot;unknown&quot;,
+            &quot;transaction&quot;: transaction ?: &quot;unknown&quot;, 
+            &quot;success&quot;: success.toString()
+        ],
+        values: [sampleResult.getBytesAsLong()],
+        timestamps: [System.currentTimeMillis()]
+    ]
 ]
 
 // Логируем для отладки
@@ -401,9 +431,8 @@ try {
     def statusCode = response.getStatusLine().getStatusCode()
     
     // Проверяем наличие тела ответа перед его чтением
-    def responseBody = &quot;&quot;
     if (response.getEntity() != null) {
-        responseBody = EntityUtils.toString(response.getEntity())
+        def responseBody = EntityUtils.toString(response.getEntity())
         log.info(&quot;VictoriaMetrics response: &quot; + responseBody)
     } else {
         log.info(&quot;VictoriaMetrics response: No response body (status: ${statusCode})&quot;)
@@ -411,12 +440,12 @@ try {
     
     // VictoriaMetrics часто возвращает 204 No Content при успешной записи
     if (statusCode == 200 || statusCode == 204) {
-        log.info(&quot;Metric successfully sent to VictoriaMetrics&quot;)
+        log.info(&quot;Metrics successfully sent to VictoriaMetrics&quot;)
     } else {
-        log.warn(&quot;Failed to send metric. Status: &quot; + statusCode + &quot;, Response: &quot; + responseBody)
+        log.warn(&quot;Failed to send metrics. Status: &quot; + statusCode)
     }
 } catch (Exception e) {
-    log.error(&quot;Error sending metric to VictoriaMetrics: &quot; + e.getMessage(), e)
+    log.error(&quot;Error sending metrics to VictoriaMetrics: &quot; + e.getMessage(), e)
 } finally {
     try {
         post.releaseConnection()
